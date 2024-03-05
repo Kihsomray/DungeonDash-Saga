@@ -18,7 +18,7 @@ class Ogre {
     }
 
     constructor() {
-
+        
     }
 
 }

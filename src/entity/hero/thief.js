@@ -22,4 +22,20 @@ class Thief {
 
     }
 
+    attack(hero, enemy) {
+            
+        if (hero.useAbility) {
+
+            if (Math.random() <= hero.abilitySuccessChance) 
+                hero.attack(enemy);
+
+            else if (Math.random() <= hero.abilityFailureChance + hero.abilitySuccessChance) 
+                return;
+            
+        }
+
+        hero.attack(enemy);
+
+    }
+
 }

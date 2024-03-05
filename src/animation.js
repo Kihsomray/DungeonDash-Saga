@@ -10,9 +10,9 @@ class Animator {
         this.totalTime = this.frameCount * this.frameDuration;
     };
 
-    drawFrame(tick, x, y, scaleBy) {
+    drawFrame(x, y) {
 
-        this.elapsedTime += tick;
+        this.elapsedTime += GAME.clockTick;
 
         if (this.isDone() && !this.loop) return;
         if (this.elapsedTime > this.totalTime) this.elapsedTime = this.elapsedTime % this.totalTime;
@@ -30,8 +30,8 @@ class Animator {
             this.height,
             x,
             y,
-            this.width * scaleBy,
-            this.height * scaleBy
+            this.width * env.SCALE,
+            this.height * env.SCALE
         );
 
     };

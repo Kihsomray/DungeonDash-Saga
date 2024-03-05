@@ -1,15 +1,15 @@
 //ENGINE = new GameEngine();
 
-const ASSET_MANAGER = new AssetManager();
+const ASSETS = new AssetManager();
 
-ASSET_MANAGER.queueDownload("*", "./res/tileset.png");
+ASSETS.queueDownload("*", "./res/tileset.png");
 
-const MAP_MANAGER = new MapManager();
+const MAP = new MapManager();
 
-ASSET_MANAGER.downloadAll(() => {
+ASSETS.downloadAll(() => {
 	
 	
-	MAP_MANAGER.init();
+	MAP.init();
 
 
 	// ENGINE.init(ctx);

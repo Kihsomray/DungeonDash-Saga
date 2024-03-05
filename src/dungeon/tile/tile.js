@@ -47,3 +47,30 @@ env.TILES =  {
     }
 
 }
+
+class Tile {
+
+    map;
+    tileX;
+    tileY;
+    type;
+    x; // center of the tile
+    y; // center of the tile
+
+    constructor(map, tileX, tileY) {
+
+        this.map = map;
+        this.tileX = tileX;
+        this.tileY = tileY;
+        this.type = new Wall(this);
+
+    }
+
+    update() {
+
+        this.x = this.map.x + this.tileX * 16 + 8;
+        this.y = this.map.y + this.tileY * 16 + 8;
+
+    }
+
+}

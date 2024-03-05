@@ -22,4 +22,20 @@ class Priestess {
 
     }
 
+    attack(hero, enemy) {
+
+        if (hero.useAbility) {
+
+            if (Math.random() <= hero.abilityChance) 
+                hero.heal(Math.random() * (this.abilityMaxHeal - this.abilityMinHeal) + this.abilityMinHeal);
+
+            else if (Math.random() <= hero.abilityFailureChance + hero.abilityChance) 
+                return;
+            
+        }
+
+        hero.attack(enemy);
+
+    }
+
 }
