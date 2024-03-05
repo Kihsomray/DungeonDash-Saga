@@ -25,7 +25,7 @@ class MapManager{
     constructor() {
 
         // create a 2d array of cells
-        for (let i = 0; i < WIDTH; i++) this.cells.push([]);
+        for (let i = 0; i < env.MAP.SIZE.width; i++) this.cells.push([]);
 
 
         // document.getElementById("game").getContext("2d").drawImage(
@@ -46,15 +46,15 @@ class MapManager{
         
     init() {
 
-        for (let i = 0; i < WIDTH; i++) {
+        for (let i = 0; i < env.MAP.SIZE.width; i++) {
 
             const left = i == 0;
-            const right = i == WIDTH - 1;
+            const right = i == env.MAP.SIZE.width - 1;
 
 
             for (let j = 0; j < HEIGHT; j++) {
 
-                const top = j == 0 && i != 0 && i != WIDTH - 1;
+                const top = j == 0 && i != 0 && i != env.MAP.SIZE.width - 1;
 
                 document.getElementById("game").getContext("2d").drawImage(
                     ASSET_MANAGER.getImage("*"),
@@ -62,9 +62,9 @@ class MapManager{
                     this.tiles[left ? "w-w-1" : (top ? "w-n-1" : right ? "w-e-1" : "f-1")].y * 16 - (top ? 8 : 0),
                     16,
                     top ? 24 : 16,
-                    16 + i * 16 * SCALE,
-                    16 + j * 16 * SCALE - (top ? 8 : 0),
-                    16 * SCALE,
+                    16 + i * 16 * env.SCALE,
+                    16 + j * 16 * env.SCALE - (top ? 8 : 0),
+                    16 * env.SCALE,
                     (top ? 24 : 16) * SCALE
                 );
 
