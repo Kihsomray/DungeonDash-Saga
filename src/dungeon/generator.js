@@ -32,6 +32,8 @@ class MapGenerator {
         this.walls = [];
         this.roomCounter = 1;
         this.cells[1][1].type = this.entrance = new Door(this.cells[1][1]);
+        this.cells[1][1].player = new Hero("Priestess");
+        console.log(this.cells[1][1].player)
         this.addSurrounding(1, 1);
 
         
@@ -58,6 +60,16 @@ class MapGenerator {
 
             }
 
+        }
+
+        // loop backwards and find a splot to place the exit
+        for (let i = this.cells.length - 1; i >= 0; i--) {
+            for (let j = this.cells[i].length - 1; j >= 0; j--) {
+                if (this.cells[i][j].type instanceof Passable) {
+                    this.cells[i][j].type = this.exit = new Door(this.cells[i][j]);
+                    return this.cells;
+                }
+            }
         }
 
         //this.generateEntities();
@@ -102,15 +114,16 @@ class MapGenerator {
 
     checkSurrounding(x, y) {
         let found = 0;
+        let corner = 0;
         if (this.isPassable(x, y + 1)) found++;
         if (this.isPassable(x + 1, y)) found++;
         if (this.isPassable(x, y - 1)) found++;
         if (this.isPassable(x - 1, y)) found++;
-        if (this.isPassable(x + 1, y + 1)) found++;
-        if (this.isPassable(x + 1, y - 1)) found++;
-        if (this.isPassable(x - 1, y - 1)) found++;
-        if (this.isPassable(x - 1, y + 1)) found++;
-        return found <= 2;
+        if (this.isPassable(x + 1, y + 1)) corner++;
+        if (this.isPassable(x + 1, y - 1)) corner++;
+        if (this.isPassable(x - 1, y - 1)) corner++;
+        if (this.isPassable(x - 1, y + 1)) corner++;
+        return found <= 1 && corner + found <= 2;
     }
 
     isPassable(x, y) {

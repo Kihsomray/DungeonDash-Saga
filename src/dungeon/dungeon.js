@@ -24,8 +24,8 @@ class MapManager{
 
     constructor() {
 
-        console.log(this.x = env.CENTER.x - 16 * env.SCALE * env.MAP.SIZE.width / 2);
-        console.log(this.y = env.CENTER.y - 16 * env.SCALE * env.MAP.SIZE.height / 2);
+        this.x = env.CENTER.x - 16 * env.SCALE * env.MAP.SIZE.width / 2;
+        this.y = env.CENTER.y - 16 * env.SCALE * env.MAP.SIZE.height / 2;
         this.cells = new MapGenerator(this, env.MAP.SIZE.width, env.MAP.SIZE.height, null).generate();
         console.log(env.CENTER)
             
@@ -41,6 +41,16 @@ class MapManager{
             }
         }
 
+    }
+
+    update() {
+        this.x = env.CENTER.x - 16 * env.SCALE * env.MAP.SIZE.width / 2;
+        this.y = env.CENTER.y - 16 * env.SCALE * env.MAP.SIZE.height / 2;
+        this.cells.forEach(tile => tile.forEach(c => c.update()));
+    }
+
+    draw() {
+        this.cells.forEach(tile => tile.forEach(c => c.draw()));
     }
 
 

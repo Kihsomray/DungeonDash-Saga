@@ -63,4 +63,9 @@ class Hero {
 
     }
 
+    draw(x, y) {
+        this.hero.animation.drawFrame(x, y);
+
+    }
+
 }

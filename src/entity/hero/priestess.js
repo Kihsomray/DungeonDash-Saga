@@ -20,6 +20,19 @@ class Priestess {
 
     constructor() {
 
+        this.animation = new Animator(
+            ASSETS.getImage("*"),
+            this.assetLocation.x,
+            this.assetLocation.y,
+            this.assetLocation.width,
+            this.assetLocation.height,
+            this.assetLocation.frames,
+            0.2,
+            1,
+            true,
+            true
+        );
+
     }
 
     attack(hero, enemy) {

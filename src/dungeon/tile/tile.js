@@ -45,6 +45,8 @@ class Tile {
 
     asset = ASSETS.getImage("*");
 
+    player;
+
     map;
     tileX;
     tileY;
@@ -70,6 +72,28 @@ class Tile {
 
     update() {
 
+        this.x = this.map.x + this.tileX * 16 * env.SCALE + 8 * env.SCALE;
+        this.y = this.map.y + this.tileY * 16 * env.SCALE + 8 * env.SCALE;
+
+        if (this.player) {
+            if (this.neighbors[1] && GAME.keyClick["w"] && (this.neighbors[1].type instanceof Passable || this.neighbors[1].type instanceof Door)) {
+                this.neighbors[1].player = this.player;
+                this.player = null;
+                GAME.keyClick["w"] = false;
+            } else if (this.neighbors[2] && GAME.keyClick["a"] && (this.neighbors[2].type instanceof Passable || this.neighbors[2].type instanceof Door)) {
+                this.neighbors[2].player = this.player;
+                this.player = null;
+                GAME.keyClick["a"] = false;
+            } else if (this.neighbors[3] && GAME.keyClick["s"] && (this.neighbors[3].type instanceof Passable || this.neighbors[3].type instanceof Door)) {
+                this.neighbors[3].player = this.player;
+                this.player = null;
+                GAME.keyClick["s"] = false;
+            } else if (this.neighbors[0] && GAME.keyClick["d"] && (this.neighbors[0].type instanceof Passable || this.neighbors[0].type instanceof Door)) {
+                this.neighbors[0].player = this.player;
+                this.player = null;
+                GAME.keyClick["d"] = false;
+            }
+        }
         this.type.update();
 
     }
@@ -77,6 +101,7 @@ class Tile {
     draw() {
 
         this.type.draw();
+        if (this.player) this.player.draw(this.x - 16, this.y - 32);
 
     }
 

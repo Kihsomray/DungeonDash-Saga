@@ -6,7 +6,7 @@ env.CTX = env.CANVAS.getContext("2d");
 function resizeCanvas() {
 
     const width = $("#container").width() - 36;
-    const height = $("#container").height() - $("#header").height() - $("#footer").height() - 36;
+    const height = $("#container").height() - 36;
 
     // ensure the bounds of the canvas
     env.CANVAS.width = Math.max(Math.min(width, env.MAX_WIDTH), env.MIN_WIDTH);

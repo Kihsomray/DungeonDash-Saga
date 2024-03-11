@@ -1,9 +1,8 @@
 // This game shell was happily modified from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
 class GameEngine {
 
-    player;
     entities = [];
-    chunks = new Set();
+    clockTick = 0;
 
     // Clicked: esc, w, d, s, a, shift, alt, e, space
     keyClick = {
@@ -21,9 +20,6 @@ class GameEngine {
 
     // Mouse location: x, y
     mouseLocation = { x: env.X_CENTER, y: env.Y_CENTER };
-
-    mouseTile = { x: 0, y: 0 };
-    mouseChunk = { x: 0, y: 0 };
 
     // Constructor
     constructor() {
@@ -79,7 +75,7 @@ class GameEngine {
             }
         });
 
-        env.CTX.canvas.addEventListener("mouseup", (e) => this.mouseClick[e.button] = this.mouseHold[e.button] = false);
+        env.CTX.canvas.addEventListener("mouseup", (e) => this.mouseClick[e.button] = false);
 
         env.CTX.canvas.addEventListener("wheel", e => e.preventDefault());
 
@@ -94,16 +90,17 @@ class GameEngine {
         window.addEventListener("keyup", event => this.keyClick[event.key.toLowerCase()] = false);
     };
 
+    update() {
 
-    draw() {
-
-
+        MAP.update();
 
     };
 
-    update() {
+    draw() {
 
-        this.chunks.forEach(chunk => chunk.update());
+        env.CTX.clearRect(0, 0, env.CTX.canvas.width, env.CTX.canvas.height);
+
+        MAP.draw();
 
     };
 
