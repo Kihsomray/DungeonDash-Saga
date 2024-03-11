@@ -9,7 +9,7 @@ const env = {
     MIN_HEIGHT: 270,
 
     // Scale of the canvas
-    SCALE: 2,
+    SCALE: 1.5,
 
     // canvas offset
     OFFSET: {
@@ -30,8 +30,8 @@ const env = {
 
         // size of map
         SIZE: {
-            width: 16,
-            height: 9
+            width: 16 * 2,
+            height: 9 * 2
         },
 
         SPAWN_RATE: {

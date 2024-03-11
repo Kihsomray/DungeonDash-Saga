@@ -39,16 +39,11 @@ env.TILES =  {
         y: 6
     },
 
-
-    "t-1": {
-        x: 1,
-        y: 12,
-        frames: 4
-    }
-
 }
 
 class Tile {
+
+    asset = ASSETS.getImage("*");
 
     map;
     tileX;
@@ -56,20 +51,32 @@ class Tile {
     type;
     x; // center of the tile
     y; // center of the tile
+    edge;
 
     constructor(map, tileX, tileY) {
 
         this.map = map;
         this.tileX = tileX;
         this.tileY = tileY;
+        this.neighbors = new Array(4);
+
+        //console.log(this.map.x, this.map.y, this.tileX, this.tileY)
+        this.x = this.map.x + this.tileX * 16 * env.SCALE + 8 * env.SCALE;
+        this.y = this.map.y + this.tileY * 16 * env.SCALE + 8 * env.SCALE;
         this.type = new Wall(this);
+        this.edge = false;
 
     }
 
     update() {
 
-        this.x = this.map.x + this.tileX * 16 + 8;
-        this.y = this.map.y + this.tileY * 16 + 8;
+        this.type.update();
+
+    }
+
+    draw() {
+
+        this.type.draw();
 
     }
 

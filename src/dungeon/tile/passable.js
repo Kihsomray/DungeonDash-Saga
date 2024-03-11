@@ -1,6 +1,6 @@
-env.TRAP = new Animation(ASSETS.getImage("*"), 16, 208, 16, 16, 4, 0.1, 1, false, true);
-
 class Passable {
+
+    trap = new Animator(ASSETS.getImage("*"), 16, 208, 16, 16, 4, 0.1, 1, false, true);
 
     neighbors;
     inventory;
@@ -62,17 +62,29 @@ class Passable {
 
     draw() {
 
+        env.CTX.drawImage(
+            ASSETS.getImage("*"),
+            16,
+            64,
+            16,
+            16,
+            this.tile.x - 8 * env.SCALE,
+            this.tile.y - 8 * env.SCALE,
+            16 * env.SCALE,
+            16 * env.SCALE
+        );
+
         if (this.trap) {
-            env.drawImage(
+            env.CTX.drawImage(
                 ASSETS.getImage("*"),
-                0,
-                0,
-                8,
-                8,
-                this.tile.x - 4 * env.SCALE,
-                this.tile.y - 4 * env.SCALE,
-                8 * env.SCALE,
-                8 * env.SCALE
+                16,
+                64,
+                16,
+                16,
+                this.tile.x - 8 * env.SCALE,
+                this.tile.y - 8 * env.SCALE,
+                16 * env.SCALE,
+                16 * env.SCALE
             );
         }
 

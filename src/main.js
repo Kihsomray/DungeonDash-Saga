@@ -4,11 +4,11 @@ const ASSETS = new AssetManager();
 
 ASSETS.queueDownload("*", "./res/tileset.png");
 
-const MAP = new MapManager();
+let MAP;
 
 ASSETS.downloadAll(() => {
 	
-	
+	MAP = new MapManager();
 	MAP.init();
 
 
