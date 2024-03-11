@@ -10,9 +10,9 @@ class Animator {
         this.totalTime = this.frameCount * this.frameDuration;
     };
 
-    drawFrame(tick, ctx, x, y, scaleBy) {
+    drawFrame(x, y) {
 
-        this.elapsedTime += tick;
+        this.elapsedTime += GAME.clockTick;
 
         if (this.isDone() && !this.loop) return;
         if (this.elapsedTime > this.totalTime) this.elapsedTime = this.elapsedTime % this.totalTime;
@@ -22,9 +22,7 @@ class Animator {
         let frameX = Math.floor(frame / this.frameLines);
         let frameY = Math.floor(frame / this.frameCount * this.frameLines);
 
-        //if (this.reverse) frame = (this.frameCount - frame - 1);
-
-        ctx.drawImage(
+        env.CTX.drawImage(
             this.spritesheet,
             this.xStart + this.width * frameX + this.xOffset * Math.floor(frame % (this.frameCount / this.frameLines)),
             this.yStart + this.height * frameY,
@@ -32,10 +30,10 @@ class Animator {
             this.height,
             x,
             y,
-            this.width * scaleBy,
-            this.height * scaleBy
+            this.width * env.SCALE,
+            this.height * env.SCALE
         );
-        //ctx.setTransform(1, 0, 0, 1, 0, 0);
+
     };
 
     currentFrame() {
@@ -45,5 +43,9 @@ class Animator {
     isDone() {
         return this.elapsedTime >= this.totalTime;
     };
+
+    isTruelyDone() {
+        return this.elapsedTime + GAME.clockTick >= this.totalTime;
+    }
 
 }

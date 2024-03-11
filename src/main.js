@@ -1,18 +1,25 @@
-//ENGINE = new GameEngine();
-
-const ASSET_MANAGER = new AssetManager();
-
-ASSET_MANAGER.queueDownload("*", "./res/tileset.png");
-
-const MAP_MANAGER = new MapManager();
-
-ASSET_MANAGER.downloadAll(() => {
-	
-	
-	MAP_MANAGER.init();
+let GAME;
+let ASSETS;
+let MAP;
 
 
+
+resizeCanvas();
+
+GAME = new GameEngine();
+ASSETS = new AssetManager();
+
+ASSETS.queueDownload("*", "./res/tileset.png");
+
+ASSETS.downloadAll(() => {
+
+	GAME.init();
+
+	MAP = new MapManager(new Hero(hero), difficulty, parseInt(time.replace("s", "")));
+	MAP.init();
+	GAME.start();
 	// ENGINE.init(ctx);
 	// ENGINE.start();
 
 });
+

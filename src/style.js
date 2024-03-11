@@ -1,41 +1,29 @@
-// Max width and height of the canvas
-const maxWidth = 960 * 2;
-const maxHeight = 540 * 2;
-
-// Min width and height of the canvas
-const minWidth = 960 * 1.5;
-const minHeight = 540 * 1.5;
-
-let X_CENTER = 0;
-let Y_CENTER = 0;
-
-const SCALE = 2;
-
-// Get the canvas element
-const canvas = $("#game")[0];
+// Update global variables
+env.CANVAS = document.getElementById("game");
+env.CTX = env.CANVAS.getContext("2d");
 
 // Resize the canvas
 function resizeCanvas() {
 
-    const canvas = document.getElementById("game");
-	const ctx = canvas.getContext("2d");
+    const width = $("#container").width() - 36;
+    const height = $("#container").height() - 36;
 
-    const width = $("#container").width() - 16;
-    const height = $("#container").height() - $("#header").height() - $("#footer").height() - 16;
+    // ensure the bounds of the canvas
+    env.CANVAS.width = Math.max(Math.min(width, env.MAX_WIDTH), env.MIN_WIDTH);
+    env.CANVAS.height = Math.max(Math.min(height, env.MAX_HEIGHT), env.MIN_HEIGHT);
 
-    canvas.width = Math.max(Math.min(width, maxWidth), minWidth);
-    canvas.height = Math.max(Math.min(height, maxHeight), minHeight);
+    // Center the canvas
+    env.CENTER.x = env.CANVAS.width / 2 / env.SCALE;
+    env.CENTER.y = env.CANVAS.height / 2 / env.SCALE;
 
-    ctx.scale(2, 2);
-    ctx.imageSmoothingEnabled = false;
-	ctx.webkitImageSmoothingEnabled = false;
-	ctx.mozImageSmoothingEnabled = false;
-    ctx.msImageSmoothingEnabled = false;
-    ctx.oImageSmoothingEnabled = false;
+    env.CTX.scale(env.SCALE, env.SCALE);
 
-    X_CENTER = ctx.canvas.width / 2 / SCALE;
-    Y_CENTER = ctx.canvas.height / 2 / SCALE;
-    
+    env.CTX.imageSmoothingEnabled = false;
+    env.CTX.webkitImageSmoothingEnabled = false;
+    env.CTX.mozImageSmoothingEnabled = false;
+    env.CTX.msImageSmoothingEnabled = false;
+    env.CTX.oImageSmoothingEnabled = false;
+
 }
 
 // Center the canvas on window resize
