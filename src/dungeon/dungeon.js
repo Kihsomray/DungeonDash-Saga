@@ -6,6 +6,13 @@ class MapManager{
     cells = [];
     won = false;
 
+    difficulties = {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 2,
+        "Insane": 4
+    }
+
     tiles = {
 
         "w-n-1": {x: 2, y: 1},
@@ -25,9 +32,12 @@ class MapManager{
 
     constructor(difficulty) {
 
+        this.difficulty = difficulty;
+        difficulty = this.difficulties[difficulty];
+
         env.MAP.SIZE.width = 16 * difficulty + 16;
         env.MAP.SIZE.height = 9 * difficulty + 9;
-
+        
         if (difficulty == 0) {
             this.time = 15;
             env.SCALE = 2.3;
@@ -74,14 +84,14 @@ class MapManager{
         // display the current time above the map
         env.CTX.fillStyle = "black";
         env.CTX.font = "16px Arial";
-        env.CTX.fillText("Time remaining: " + Math.floor((this.finish - Date.now()) / 1000), env.CENTER.x - 68, this.y - 8);
+        env.CTX.fillText("Time remaining: " + Math.floor((this.finish - Date.now()) / 1000), env.CENTER.x - 72, this.y - 8);
 
         this.cells.forEach(tile => tile.forEach(c => c.draw()));
 
         // if time is up, display black screen with "Game Over" message, you lost
         if (Date.now() > this.finish || this.won) {
 
-            this.final = this.won ? this.final : this.time + ":000";
+            const final = this.difficulty + " @ " + (this.won ? this.final : this.time + ":000");
 
             env.CTX.fillStyle = "black";
             env.CTX.fillRect(0, 0, env.CTX.canvas.width, env.CTX.canvas.height);
@@ -93,7 +103,7 @@ class MapManager{
             env.CTX.fillText(this.won ? "You won!" : "You lost", env.CENTER.x - 48, env.CENTER.y + 30);
 
             env.CTX.font = "16px Arial";
-            env.CTX.fillText(this.final, env.CENTER.x - 24, env.CENTER.y - 60);
+            env.CTX.fillText(final, env.CENTER.x - 48, env.CENTER.y - 60);
         }
     }
 

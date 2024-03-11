@@ -15,7 +15,7 @@ ASSETS.downloadAll(() => {
 
 	GAME.init();
 
-	MAP = new MapManager(0);
+	MAP = new MapManager("Easy");
 	MAP.init();
 	GAME.start();
 	// ENGINE.init(ctx);
@@ -24,19 +24,19 @@ ASSETS.downloadAll(() => {
 });
 
 document.getElementById("easy").addEventListener("click", function() {
-	MAP = new MapManager(0);
+	MAP = new MapManager("Easy");
 });
 
 document.getElementById("medium").addEventListener("click", function() {
-	MAP = new MapManager(1);
+	MAP = new MapManager("Medium");
 });
 
 document.getElementById("hard").addEventListener("click", function() {
-	MAP = new MapManager(2);
+	MAP = new MapManager("Hard");
 });
 
 document.getElementById("insane").addEventListener("click", function() {
-	MAP = new MapManager(4);
+	MAP = new MapManager("Insane");
 });
 
 
