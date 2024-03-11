@@ -15,11 +15,24 @@ ASSETS.downloadAll(() => {
 
 	GAME.init();
 
-	MAP = new MapManager(new Hero(hero), difficulty, parseInt(time.replace("s", "")));
+	MAP = new MapManager(0);
 	MAP.init();
 	GAME.start();
 	// ENGINE.init(ctx);
 	// ENGINE.start();
 
 });
+
+document.getElementById("easy").addEventListener("click", function() {
+	MAP = new MapManager(0);
+});
+
+document.getElementById("medium").addEventListener("click", function() {
+	MAP = new MapManager(1);
+});
+
+document.getElementById("hard").addEventListener("click", function() {
+	MAP = new MapManager(2);
+});
+
 

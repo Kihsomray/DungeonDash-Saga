@@ -101,7 +101,7 @@ class Tile {
     draw() {
 
         this.type.draw();
-        if (this.player) this.player.draw(this.x - 16, this.y - 32);
+        if (this.player) this.player.draw(this.x - 8 * env.SCALE, this.y - 16 * env.SCALE);
 
     }
 

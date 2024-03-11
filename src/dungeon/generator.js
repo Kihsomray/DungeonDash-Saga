@@ -33,7 +33,6 @@ class MapGenerator {
         this.roomCounter = 1;
         this.cells[1][1].type = this.entrance = new Door(this.cells[1][1]);
         this.cells[1][1].player = new Hero("Priestess");
-        console.log(this.cells[1][1].player)
         this.addSurrounding(1, 1);
 
         

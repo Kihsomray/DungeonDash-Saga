@@ -22,7 +22,14 @@ class MapManager{
 
     }
 
-    constructor() {
+    constructor(difficulty) {
+
+        env.MAP.SIZE.width = 16 * difficulty + 16;
+        env.MAP.SIZE.height = 9 * difficulty + 9;
+
+        if (difficulty == 0) env.SCALE = 2.35;
+        else if (difficulty == 1) env.SCALE = 1.2;
+        else if (difficulty == 2) env.SCALE = 0.8;
 
         this.x = env.CENTER.x - 16 * env.SCALE * env.MAP.SIZE.width / 2;
         this.y = env.CENTER.y - 16 * env.SCALE * env.MAP.SIZE.height / 2;
