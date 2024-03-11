@@ -16,6 +16,9 @@ class Door {
     }
 
     update() {
+        if (!this.entrance && Date.now() < this.tile.map.finish && this.tile.player) {
+            this.tile.map.won = true;
+        }
     }
 
     draw() {

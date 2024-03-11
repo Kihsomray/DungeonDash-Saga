@@ -31,7 +31,7 @@ class MapGenerator {
 
         this.walls = [];
         this.roomCounter = 1;
-        this.cells[1][1].type = this.entrance = new Door(this.cells[1][1]);
+        this.cells[1][1].type = this.entrance = new Door(this.cells[1][1], true);
         this.cells[1][1].player = new Hero("Priestess");
         this.addSurrounding(1, 1);
 
