@@ -32,13 +32,17 @@ class MapManager{
             this.time = 15;
             env.SCALE = 2.3;
         } else if (difficulty == 1) {
-            this.time = 20;
+            this.time = 25;
             env.SCALE = 1.15;
         } else if (difficulty == 2) {
-            this.time = 30;
+            this.time = 40;
             env.SCALE = 0.76;
+        } else if (difficulty == 4) {
+            this.time = 90;
+            env.SCALE = 0.45;
         }
 
+        this.start = Date.now();
         this.finish = Date.now() + this.time * 1000;
 
         this.x = env.CENTER.x - 16 * env.SCALE * env.MAP.SIZE.width / 2;
@@ -76,6 +80,9 @@ class MapManager{
 
         // if time is up, display black screen with "Game Over" message, you lost
         if (Date.now() > this.finish || this.won) {
+
+            this.final = this.won ? this.final : this.time + ":000";
+
             env.CTX.fillStyle = "black";
             env.CTX.fillRect(0, 0, env.CTX.canvas.width, env.CTX.canvas.height);
             env.CTX.fillStyle = "white";
@@ -84,6 +91,9 @@ class MapManager{
             env.CTX.fillStyle = this.won ? "lime" : "red";
             env.CTX.font = "28px Arial";
             env.CTX.fillText(this.won ? "You won!" : "You lost", env.CENTER.x - 48, env.CENTER.y + 30);
+
+            env.CTX.font = "16px Arial";
+            env.CTX.fillText(this.final, env.CENTER.x - 24, env.CENTER.y - 60);
         }
     }
 

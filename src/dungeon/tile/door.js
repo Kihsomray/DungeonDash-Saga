@@ -16,7 +16,10 @@ class Door {
     }
 
     update() {
-        if (!this.entrance && Date.now() < this.tile.map.finish && this.tile.player) {
+        if (!this.entrance && Date.now() < this.tile.map.finish && this.tile.player && !this.tile.map.won) {
+            const finish = Date.now() - this.tile.map.start;
+            console.log(finish)
+            this.tile.map.final = parseInt(finish / 1000) + ":" + (finish % 1000);
             this.tile.map.won = true;
         }
     }

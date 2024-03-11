@@ -35,4 +35,8 @@ document.getElementById("hard").addEventListener("click", function() {
 	MAP = new MapManager(2);
 });
 
+document.getElementById("insane").addEventListener("click", function() {
+	MAP = new MapManager(4);
+});
+
 
